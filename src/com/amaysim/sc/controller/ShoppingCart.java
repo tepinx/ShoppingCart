@@ -1,9 +1,15 @@
-package com.amaysim.shopping.cart;
+package com.amaysim.sc.controller;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.List;
 import java.util.Map;
+
+import com.amaysim.sc.pojo.Cart;
+import com.amaysim.sc.pojo.ExpectedCartItems;
+import com.amaysim.sc.pojo.Item;
+import com.amaysim.sc.pojo.ItemsAdded;
+import com.amaysim.sc.rule.PricingRule;
 
 public class ShoppingCart {
 
@@ -82,6 +88,10 @@ public class ShoppingCart {
 
 	public List<ExpectedCartItems> items() {
 		return cart.getExpectedCartItemsList();
+	}
+	
+	public Map<String, ItemsAdded> addedItems() {
+		return cart.getItemsAddedMap();
 	}
 
 	private void applyPricingRule(

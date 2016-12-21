@@ -1,10 +1,12 @@
-package com.amaysim.shopping.cart;
+package com.amaysim.sc.pojo;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.amaysim.sc.rule.PricingRule;
 
 public class Cart {
 

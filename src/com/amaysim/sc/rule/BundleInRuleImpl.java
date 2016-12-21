@@ -1,10 +1,15 @@
-package com.amaysim.shopping.cart;
+package com.amaysim.sc.rule;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-public class BundleInPromotionImpl implements PricingRule {
+import com.amaysim.sc.pojo.Cart;
+import com.amaysim.sc.pojo.ExpectedCartItems;
+import com.amaysim.sc.pojo.Item;
+import com.amaysim.sc.pojo.ItemsAdded;
+
+public class BundleInRuleImpl implements PricingRule {
 
 	@Override
 	public Cart applyRule(

@@ -1,4 +1,4 @@
-package com.amaysim.shopping.cart;
+package com.amaysim.sc.pojo;
 
 import java.math.BigDecimal;
 
