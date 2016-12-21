@@ -3,14 +3,14 @@ package com.amaysim.shopping.cart;
 public class ExpectedCartItems {
 
 	private Item item;
-	private Integer count;
+	private int count;
 
 	
 	public ExpectedCartItems() {
 		super();
 	}
 
-	public ExpectedCartItems(Item item, Integer count) {
+	public ExpectedCartItems(Item item, int count) {
 		super();
 		this.item = item;
 		this.count = count;
@@ -25,12 +25,12 @@ public class ExpectedCartItems {
 		this.item = item;
 	}
 
-	public Integer getCount() {
+	public int getCount() {
 		return count;
 	}
 
 	public void setCount(
-	    Integer count) {
+	    int count) {
 		this.count = count;
 	}
 }
