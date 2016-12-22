@@ -115,7 +115,7 @@ public class ShoppingCart {
 	 */
 	public List<ExpectedCartItems> items() {
 		for (Map.Entry<String, ItemsAdded> entry : cart.getItemsAddedMap().entrySet()) {
-			addToExpectedCartItemsList(cart.getExpectedCartItemsList(), entry.getValue());
+			addToExpectedCartItems(cart.getExpectedCartItemsList(), entry.getValue());
 		}
 		return cart.getExpectedCartItemsList();
 	}
@@ -158,14 +158,14 @@ public class ShoppingCart {
 			}
 		}
 	}
-	
+
 	/**
 	 * Add the items added to Expected Cart Items
 	 * 
 	 * @param expectedCartItemsList
 	 * @param itemsAdded
 	 */
-	private void addToExpectedCartItemsList(
+	private void addToExpectedCartItems(
 	    List<ExpectedCartItems> expectedCartItemsList,
 	    ItemsAdded itemsAdded) {
 
