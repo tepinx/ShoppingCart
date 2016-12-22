@@ -15,52 +15,36 @@ public class BundleInRuleImpl implements PricingRule {
 	public Cart applyRule(
 	    Cart cart) {
 
+		// item code value should be get from the database, but for now hard coded :)
 		String itemCode = "ult_medium";
 		int freeItemCount = 0;
 
-		boolean isExpectedCartItemsListEmpty = cart.getExpectedCartItemsList().isEmpty();
-
 		for (Map.Entry<String, ItemsAdded> entry : cart.getItemsAddedMap().entrySet()) {
 			if (entry.getValue().getItem().getCode().equals(itemCode)) {
+				//number of item(s) is equivalent to number of free item(s)
 				freeItemCount = entry.getValue().getCount();
-				if (isExpectedCartItemsListEmpty) {
-					addToExpectedCartItemsList(cart.getExpectedCartItemsList(), entry.getValue());
-				}
-			} else {
-				if (isExpectedCartItemsListEmpty) {
-					addToExpectedCartItemsList(cart.getExpectedCartItemsList(), entry.getValue());
-				}
-			}
+			} 
 		}
 
-		createFreeItem(cart.getExpectedCartItemsList(), freeItemCount);
+		//invoke create free item
+		createFreeItems(cart.getExpectedCartItemsList(), freeItemCount);
 
 		return cart;
 	}
 
-	private void createFreeItem(
+	/**
+	 * Create free items then add to Expected Cart Items
+	 * 
+	 * @param expectedCartItemsList
+	 * @param freeItemCount
+	 */
+	private void createFreeItems(
 	    List<ExpectedCartItems> expectedCartItemsList,
 	    int freeItemCount) {
 
 		if (freeItemCount > 0) {
-			ItemsAdded freeItemsAdded = new ItemsAdded();
-			freeItemsAdded.setCount(freeItemCount);
-			Item freeItem = new Item();
-			freeItem.setCode("1gb");
-			freeItem.setName("1 GB Data-pack");
-			freeItem.setPrice(new BigDecimal(9.90));
-			freeItemsAdded.setItem(freeItem);
-			addToExpectedCartItemsList(expectedCartItemsList, freeItemsAdded);
+			//item should be get from the database but for now hard coded :)
+			expectedCartItemsList.add(new ExpectedCartItems(new Item("1gb", "1 GB Data-pack", new BigDecimal(9.90)), freeItemCount));
 		}
 	}
-
-	private void addToExpectedCartItemsList(
-	    List<ExpectedCartItems> expectedCartItemsList,
-	    ItemsAdded itemsAdded) {
-		ExpectedCartItems expectedCartItems = new ExpectedCartItems();
-		expectedCartItems.setItem(itemsAdded.getItem());
-		expectedCartItems.setCount(itemsAdded.getCount());
-		expectedCartItemsList.add(expectedCartItems);
-	}
-
 }

@@ -13,12 +13,11 @@ public class ItemsAdded {
 		super();
 	}
 
-	public ItemsAdded(Item item, int count, BigDecimal origPriceTotal, BigDecimal discPriceTotal) {
+	public ItemsAdded(Item item, int count, BigDecimal origPriceTotal) {
 		super();
 		this.item = item;
 		this.count = count;
 		this.origPriceTotal = origPriceTotal;
-		this.discPriceTotal = discPriceTotal;
 	}
 
 	public Item getItem() {

@@ -1,12 +1,9 @@
 package com.amaysim.sc.rule;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.List;
 import java.util.Map;
 
 import com.amaysim.sc.model.Cart;
-import com.amaysim.sc.model.ExpectedCartItems;
 import com.amaysim.sc.model.ItemsAdded;
 
 public class DealPromoRuleImpl implements PricingRule {
@@ -15,42 +12,23 @@ public class DealPromoRuleImpl implements PricingRule {
 	public Cart applyRule(
 	    Cart cart) {
 
+		// item code value should be get from the database, but for now hard coded :)
 		String itemCode = "ult_small";
-		boolean isExpectedCartItemsListEmpty = cart.getExpectedCartItemsList().isEmpty();
-		int count = 0;
-		MathContext mc = new MathContext(4);
+		int itemsDealCount = 0;
 
 		for (Map.Entry<String, ItemsAdded> entry : cart.getItemsAddedMap().entrySet()) {
 			if (entry.getValue().getItem().getCode().equals(itemCode)) {
-
+				// check if item count is equal or more than 3
 				if (entry.getValue().getCount() >= 3) {
-					count = ((entry.getValue().getCount() / 3) * 2) + (entry.getValue().getCount() % 3);
+					//get the items deal count for the pricing rule (if you buy 3 items, you will pay the price of two only)
+					itemsDealCount = ((entry.getValue().getCount() / 3) * 2) + (entry.getValue().getCount() % 3);
 				} else {
-					count = entry.getValue().getCount();
+					itemsDealCount = entry.getValue().getCount();
 				}
-
-				entry.getValue().setDiscPriceTotal(entry.getValue().getItem().getPrice().multiply(new BigDecimal(count), mc));
-
-				if (isExpectedCartItemsListEmpty) {
-					addToExpectedCartItemsList(cart.getExpectedCartItemsList(), entry.getValue());
-				}
-			} else {
-				if (isExpectedCartItemsListEmpty) {
-					addToExpectedCartItemsList(cart.getExpectedCartItemsList(), entry.getValue());
-				}
+				//get item price multiply by items deal count
+				entry.getValue().setDiscPriceTotal(entry.getValue().getItem().getPrice().multiply(new BigDecimal(itemsDealCount)));
 			}
 		}
-
 		return cart;
 	}
-
-	private void addToExpectedCartItemsList(
-	    List<ExpectedCartItems> expectedCartItemsList,
-	    ItemsAdded itemsAdded) {
-		ExpectedCartItems expectedCartItems = new ExpectedCartItems();
-		expectedCartItems.setItem(itemsAdded.getItem());
-		expectedCartItems.setCount(itemsAdded.getCount());
-		expectedCartItemsList.add(expectedCartItems);
-	}
-
 }

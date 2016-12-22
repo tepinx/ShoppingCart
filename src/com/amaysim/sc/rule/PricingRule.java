@@ -4,7 +4,6 @@ import com.amaysim.sc.model.Cart;
 
 public interface PricingRule {
 
-	Cart applyRule(
-	    Cart cart);
+	Cart applyRule(Cart cart);
 
 }

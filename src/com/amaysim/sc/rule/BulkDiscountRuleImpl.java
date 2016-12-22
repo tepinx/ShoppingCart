@@ -1,12 +1,9 @@
 package com.amaysim.sc.rule;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.util.List;
 import java.util.Map;
 
 import com.amaysim.sc.model.Cart;
-import com.amaysim.sc.model.ExpectedCartItems;
 import com.amaysim.sc.model.ItemsAdded;
 
 public class BulkDiscountRuleImpl implements PricingRule {
@@ -15,34 +12,17 @@ public class BulkDiscountRuleImpl implements PricingRule {
 	public Cart applyRule(
 	    Cart cart) {
 
+		// item code and drop price value should be get from the database, but for now hard coded :)
 		String itemCode = "ult_large";
 		BigDecimal dropPrice = new BigDecimal(39.90);
-		MathContext mc = new MathContext(4);
-		boolean isExpectedCartItemsListEmpty = cart.getExpectedCartItemsList().isEmpty();
 
 		for (Map.Entry<String, ItemsAdded> entry : cart.getItemsAddedMap().entrySet()) {
+			// check item code if correct and item count if greater than 3
 			if (entry.getValue().getItem().getCode().equals(itemCode) && entry.getValue().getCount() > 3) {
-				entry.getValue().setDiscPriceTotal(new BigDecimal(entry.getValue().getCount()).multiply(dropPrice, mc));
-				if (isExpectedCartItemsListEmpty) {
-					addToExpectedCartItemsList(cart.getExpectedCartItemsList(), entry.getValue());
-				}
-			} else {
-				if (isExpectedCartItemsListEmpty) {
-					addToExpectedCartItemsList(cart.getExpectedCartItemsList(), entry.getValue());
-				}
-			}
+				//multiply the item count to drop price and set to discount price total
+				entry.getValue().setDiscPriceTotal(new BigDecimal(entry.getValue().getCount()).multiply(dropPrice));
+			} 
 		}
-
 		return cart;
 	}
-
-	private void addToExpectedCartItemsList(
-	    List<ExpectedCartItems> expectedCartItemsList,
-	    ItemsAdded itemsAdded) {
-		ExpectedCartItems expectedCartItems = new ExpectedCartItems();
-		expectedCartItems.setItem(itemsAdded.getItem());
-		expectedCartItems.setCount(itemsAdded.getCount());
-		expectedCartItemsList.add(expectedCartItems);
-	}
-
 }
