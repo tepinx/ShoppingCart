@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.amaysim.sc.controller.ShoppingCart;
-import com.amaysim.sc.pojo.ExpectedCartItems;
-import com.amaysim.sc.pojo.Item;
-import com.amaysim.sc.pojo.ItemsAdded;
+import com.amaysim.sc.model.ExpectedCartItems;
+import com.amaysim.sc.model.Item;
+import com.amaysim.sc.model.ItemsAdded;
 import com.amaysim.sc.rule.AddPromoCodeRuleImpl;
 import com.amaysim.sc.rule.BulkDiscountRuleImpl;
 import com.amaysim.sc.rule.BundleInRuleImpl;

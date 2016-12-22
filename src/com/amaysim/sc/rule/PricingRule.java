@@ -1,6 +1,6 @@
 package com.amaysim.sc.rule;
 
-import com.amaysim.sc.pojo.Cart;
+import com.amaysim.sc.model.Cart;
 
 public interface PricingRule {
 

@@ -1,4 +1,4 @@
-package com.amaysim.sc.pojo;
+package com.amaysim.sc.model;
 
 public class ExpectedCartItems {
 

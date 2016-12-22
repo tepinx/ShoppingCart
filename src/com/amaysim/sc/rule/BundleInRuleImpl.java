@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-import com.amaysim.sc.pojo.Cart;
-import com.amaysim.sc.pojo.ExpectedCartItems;
-import com.amaysim.sc.pojo.Item;
-import com.amaysim.sc.pojo.ItemsAdded;
+import com.amaysim.sc.model.Cart;
+import com.amaysim.sc.model.ExpectedCartItems;
+import com.amaysim.sc.model.Item;
+import com.amaysim.sc.model.ItemsAdded;
 
 public class BundleInRuleImpl implements PricingRule {
 

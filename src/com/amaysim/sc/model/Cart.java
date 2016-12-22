@@ -1,4 +1,4 @@
-package com.amaysim.sc.pojo;
+package com.amaysim.sc.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

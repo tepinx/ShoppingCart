@@ -5,9 +5,9 @@ import java.math.MathContext;
 import java.util.List;
 import java.util.Map;
 
-import com.amaysim.sc.pojo.Cart;
-import com.amaysim.sc.pojo.ExpectedCartItems;
-import com.amaysim.sc.pojo.ItemsAdded;
+import com.amaysim.sc.model.Cart;
+import com.amaysim.sc.model.ExpectedCartItems;
+import com.amaysim.sc.model.ItemsAdded;
 
 public class BulkDiscountRuleImpl implements PricingRule {
 
